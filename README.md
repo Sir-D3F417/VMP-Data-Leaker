@@ -128,7 +128,7 @@ pandas>=2.0.0
 
 ## 📸 Demo
 
-[Coming Soon]
+[YouTube Vedio](https://www.youtube.com/watch?v=I8DPKb4opok)
 
 ## 📜 License
 
