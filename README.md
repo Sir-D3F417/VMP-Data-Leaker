@@ -5,7 +5,14 @@
   ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
   ![CustomTkinter](https://img.shields.io/badge/CustomTkinter-5.2.0+-purple.svg)
   ![License](https://img.shields.io/badge/License-MIT-green.svg)
+  [![Telegram](https://img.shields.io/badge/Join%20Us-Telegram-blue?style=flat&logo=telegram)](https://t.me/d3f417ir)
 </div>
+
+<p align="center">
+  <img src="assets/logo.webp" alt="TeleFlow-Bridge Logo"/>
+  <br>
+  <i>Network Security Monitoring Tool</i>
+</p>
 
 ---
 
