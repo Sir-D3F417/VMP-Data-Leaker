@@ -1,6 +1,6 @@
 <div align="center">
   <h1>🔮 VMP Data Leaker Pro</h1>
-  <p>A powerful, modern GUI application for VMP server data analysis</p>
+  <p>A powerful, modern GUI application for VMP server Players Data Leaker</p>
 
   ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
   ![CustomTkinter](https://img.shields.io/badge/CustomTkinter-5.2.0+-purple.svg)
