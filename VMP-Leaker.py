@@ -44,7 +44,7 @@ class PlayerDataApp:
         self.root = root
         self.root.title("VMP Data Leaker | Dev:D3F417")
         
-        # Initialize basic variables
+        
         self.status_var = ctk.StringVar()
         self.last_refresh_time = None
         self.is_loading = False
@@ -52,10 +52,10 @@ class PlayerDataApp:
         self.current_ip = ""
         self.current_port = ""
         
-        # Load config or set defaults
+        
         self.load_config()
         
-        # Custom color scheme
+        
         self.colors = {
             "purple": {"main": "#8A2BE2", "hover": "#9B30FF", "pressed": "#7B1FA2"},
             "background": "#2B2B2B",
@@ -64,25 +64,25 @@ class PlayerDataApp:
             "text_secondary": "#B0B0B0"
         }
         
-        # Set theme
+        
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("dark-blue")  # Base theme
         
-        # Initialize GUI elements
+        
         self.ip_entry = None
         self.port_entry = None
         self.player_data_frame = None
         self.loading_label = None
         
-        # Set refresh settings
+        
         self.auto_refresh = self.config.get("auto_refresh", False)
         self.refresh_interval = self.config.get("refresh_interval", 30)
         self.refresh_thread = None
         
-        # Create GUI
+        
         self.create_gui()
         
-        # Set window close handler
+        
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def load_config(self):
@@ -130,7 +130,7 @@ class PlayerDataApp:
             )
             copy_button.pack(pady=5)
             
-            # Add window cleanup
+            
             player_window.protocol("WM_DELETE_WINDOW", 
                                  lambda: self.safe_destroy_widget(player_window))
         except Exception as e:
@@ -142,13 +142,13 @@ class PlayerDataApp:
 
     def refresh_data(self):
         try:
-            # Clear existing buttons first
+            
             self.clear_player_buttons()
             
             ip = self.ip_entry.get()
             port = self.port_entry.get()
             if ip and port:
-                # Schedule data loading for next event loop iteration
+                
                 self.root.after(100, lambda: self.load_player_data(ip, port))
         except Exception as e:
             self.update_status(f"Refresh error: {str(e)}", is_error=True)
@@ -158,12 +158,12 @@ class PlayerDataApp:
             player_data = self.fetch_player_data(ip, port)
             
             if player_data:
-                # Clear existing buttons safely
+                
                 self.clear_player_buttons()
                 
                 def create_buttons():
                     try:
-                        # Create new player buttons
+                        
                         for index, player in enumerate(player_data):
                             try:
                                 player_button = ctk.CTkButton(
@@ -187,20 +187,20 @@ class PlayerDataApp:
                     except Exception as e:
                         self.update_status(f"Error creating buttons: {str(e)}", is_error=True)
                 
-                # Schedule button creation for next event loop iteration
+                
                 self.root.after(100, create_buttons)
                 
         except Exception as e:
             self.update_status(f"Error loading player data: {str(e)}", is_error=True)
 
     def create_gui(self):
-        # Configure main window
+        
         self.root.configure(fg_color=self.colors["background"])
         
         main_frame = ctk.CTkFrame(self.root, fg_color=self.colors["background"])
         main_frame.grid(row=0, column=0, sticky='nsew')
 
-        # Title with enhanced styling
+        
         title_label = ctk.CTkLabel(
             main_frame, 
             text="VMP Data Leaker", 
@@ -209,7 +209,7 @@ class PlayerDataApp:
         )
         title_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
-        # Welcome message with modern font
+        
         welcome_label = ctk.CTkLabel(
             main_frame, 
             text="Telegram : @hex_aa", 
@@ -218,11 +218,11 @@ class PlayerDataApp:
         )
         welcome_label.grid(row=1, column=0, padx=20, pady=(0, 20))
 
-        # Input fields with styled labels
+        
         input_frame = ctk.CTkFrame(main_frame, fg_color=self.colors["secondary"])
         input_frame.grid(row=2, column=0, padx=20, pady=10, sticky='ew')
 
-        # IP input with styled label
+        
         ip_label = ctk.CTkLabel(
             input_frame, 
             text="Enter IP:", 
@@ -240,7 +240,7 @@ class PlayerDataApp:
         )
         self.ip_entry.grid(row=0, column=1, padx=10, pady=5)
 
-        # Port input with styled label
+        
         port_label = ctk.CTkLabel(
             input_frame, 
             text="Enter Port:", 
@@ -258,7 +258,7 @@ class PlayerDataApp:
         )
         self.port_entry.grid(row=1, column=1, padx=10, pady=5)
 
-        # Main action button with enhanced styling
+        
         fetch_button = ctk.CTkButton(
             main_frame,
             text="Fetch Player Data",
@@ -269,7 +269,7 @@ class PlayerDataApp:
         )
         fetch_button.grid(row=3, column=0, padx=20, pady=15)
 
-        # Control buttons with consistent styling
+        
         control_frame = ctk.CTkFrame(main_frame, fg_color=self.colors["background"])
         control_frame.grid(row=4, column=0, padx=20, pady=10)
 
@@ -291,7 +291,7 @@ class PlayerDataApp:
                 width=120
             ).pack(side='left', padx=5)
 
-        # Auto-refresh controls with modern styling
+        
         refresh_controls = ctk.CTkFrame(main_frame, fg_color=self.colors["secondary"])
         refresh_controls.grid(row=5, column=0, padx=20, pady=10, sticky='ew')
         
@@ -316,7 +316,7 @@ class PlayerDataApp:
         )
         self.refresh_status.pack(side='right', padx=10)
 
-        # Credits with elegant styling
+        
         credits_label = ctk.CTkLabel(
             main_frame,
             text="Developed by: D3F417",
@@ -325,14 +325,14 @@ class PlayerDataApp:
         )
         credits_label.grid(row=6, column=0, pady=20)
 
-        # Player data frame
+        
         self.player_data_frame = ctk.CTkFrame(
             self.root,
             fg_color=self.colors["secondary"]
         )
         self.player_data_frame.grid(row=1, column=0, sticky='nsew', padx=20, pady=10)
 
-        # Status bar with refined styling
+        
         status_bar = ctk.CTkFrame(self.root, fg_color=self.colors["secondary"])
         status_bar.grid(row=2, column=0, sticky='ew', padx=20, pady=(0, 10))
         
@@ -352,7 +352,7 @@ class PlayerDataApp:
         )
         self.refresh_time_label.pack(side='right', padx=10, pady=5)
 
-        # Configure grid weights
+        
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
@@ -376,10 +376,10 @@ class PlayerDataApp:
         port = self.port_entry.get().strip()
         
         try:
-            # Validate IP
+            
             ipaddress.ip_address(ip)
             
-            # Validate port
+            
             port_num = int(port)
             if not (1 <= port_num <= 65535):
                 raise ValueError("Port must be between 1 and 65535")
@@ -396,7 +396,7 @@ class PlayerDataApp:
             self.status_label.configure(text_color="white")
 
     def create_player_data_view(self):
-        # Add search and filter frame
+        
         filter_frame = ctk.CTkFrame(self.player_data_frame)
         filter_frame.grid(row=0, column=0, sticky='ew', columnspan=4)
         
@@ -404,7 +404,7 @@ class PlayerDataApp:
         self.search_entry.pack(side='left', padx=5, pady=5)
         self.search_entry.bind('<KeyRelease>', self.filter_players)
         
-        # Add sorting options
+        
         sort_options = ["Name", "Level", "Playtime"]
         self.sort_var = ctk.StringVar(value="Name")
         sort_menu = ctk.CTkOptionMenu(filter_frame, values=sort_options, 
@@ -451,7 +451,7 @@ class PlayerDataApp:
 
     def export_to_csv(self, player_data: List[Dict[str, Any]], file_path: str):
         try:
-            # Define CSV headers and data transformation
+           
             headers = [
                 'Name', 'Level', 'Playtime', 'Last Seen', 'IP Address',
                 'Inventory Items', 'Stats', 'Location', 'Export Date'
@@ -511,11 +511,11 @@ class PlayerDataApp:
         while self.auto_refresh:
             try:
                 self.refresh_data()
-                # Update last refresh time
+                
                 self.last_refresh_time = datetime.now()
                 self.update_refresh_status()
                 
-                # Sleep for the refresh interval
+                
                 for _ in range(self.refresh_interval):
                     if not self.auto_refresh:
                         break
@@ -524,7 +524,7 @@ class PlayerDataApp:
                     
             except Exception as e:
                 self.update_status(f"Auto-refresh error: {str(e)}", is_error=True)
-                time.sleep(5)  # Wait before retrying
+                time.sleep(5)  
                 
     def update_refresh_status(self):
         if not self.auto_refresh:
@@ -550,11 +550,11 @@ class PlayerDataApp:
         }
         
         for player in player_data:
-            # Calculate averages
+            
             analysis['average_level'] += player.get('level', 0)
             analysis['total_playtime'] += player.get('playtime', 0)
             
-            # Count active players (online in last 24h)
+            
             last_seen = player.get('lastSeen', '')
             if last_seen:
                 try:
@@ -562,14 +562,14 @@ class PlayerDataApp:
                     if (datetime.now() - last_seen_date).total_seconds() < 86400:
                         analysis['active_players'] += 1
                 except (ValueError, TypeError):
-                    pass  # Skip invalid dates
+                    pass  
                 
-            # Analyze inventory items
+            
             for item in player.get('inventory', []):
                 item_name = item.get('name', 'Unknown')
                 analysis['inventory_stats'][item_name] = analysis['inventory_stats'].get(item_name, 0) + 1
                 
-            # Create location heatmap
+            
             loc_key = f"{player.get('x', 0)//100},{player.get('z', 0)//100}"
             analysis['location_heatmap'][loc_key] = analysis['location_heatmap'].get(loc_key, 0) + 1
         
@@ -583,7 +583,7 @@ class PlayerDataApp:
         settings_window.title("Settings")
         settings_window.geometry("400x300")
         
-        # Refresh interval setting
+        
         refresh_frame = ctk.CTkFrame(settings_window)
         refresh_frame.pack(fill='x', padx=10, pady=5)
         
@@ -592,13 +592,13 @@ class PlayerDataApp:
         refresh_entry.insert(0, str(self.refresh_interval))
         refresh_entry.pack(side='right')
         
-        # Auto-refresh toggle
+        
         auto_refresh_var = ctk.BooleanVar(value=self.auto_refresh)
         auto_refresh_cb = ctk.CTkCheckBox(settings_window, text="Enable Auto-refresh",
                                         variable=auto_refresh_var)
         auto_refresh_cb.pack(pady=5)
         
-        # Theme selection
+        
         theme_frame = ctk.CTkFrame(settings_window)
         theme_frame.pack(fill='x', padx=10, pady=5)
         
@@ -610,17 +610,17 @@ class PlayerDataApp:
         
         def save_settings():
             try:
-                # Validate refresh interval
+                
                 valid, error_msg = self.validate_refresh_interval(refresh_entry.get())
                 if not valid:
                     self.update_status(error_msg, is_error=True)
                     return
                     
-                # Update settings
+                
                 self.refresh_interval = int(refresh_entry.get())
                 new_auto_refresh = auto_refresh_var.get()
                 
-                # Handle auto-refresh changes
+                
                 if new_auto_refresh != self.auto_refresh:
                     self.auto_refresh = new_auto_refresh
                     if new_auto_refresh:
@@ -628,19 +628,19 @@ class PlayerDataApp:
                     else:
                         self.stop_auto_refresh()
                 
-                # Update theme
+                
                 new_theme = theme_var.get().lower()
                 ctk.set_appearance_mode(new_theme)
                 self.update_theme(new_theme)
                 
-                # Save to config dictionary
+                
                 self.config.update({
                     "refresh_interval": self.refresh_interval,
                     "auto_refresh": self.auto_refresh,
                     "theme": new_theme
                 })
                 
-                # Save config to file
+                
                 self.save_config()
                 
                 settings_window.destroy()
@@ -649,7 +649,7 @@ class PlayerDataApp:
             except ValueError as e:
                 self.update_status("Invalid refresh interval!", is_error=True)
                 
-        # Style the save button with purple theme
+        
         save_button = ctk.CTkButton(
             settings_window, 
             text="Save Settings",
@@ -659,7 +659,7 @@ class PlayerDataApp:
         )
         save_button.pack(pady=10)
         
-        # Center the settings window
+        
         settings_window.update_idletasks()
         width = settings_window.winfo_width()
         height = settings_window.winfo_height()
@@ -669,7 +669,7 @@ class PlayerDataApp:
 
     def update_theme(self, theme):
         """Update the application theme and refresh the UI"""
-        # Update colors based on theme
+        
         if theme == "light":
             self.colors.update({
                 "background": "#F0F0F0",
@@ -677,7 +677,7 @@ class PlayerDataApp:
                 "text": "#000000",
                 "text_secondary": "#505050"
             })
-        else:  # dark theme
+        else:  
             self.colors.update({
                 "background": "#2B2B2B",
                 "secondary": "#3B3B3B",
@@ -685,10 +685,10 @@ class PlayerDataApp:
                 "text_secondary": "#B0B0B0"
             })
 
-        # Update main window colors
+        
         self.root.configure(fg_color=self.colors["background"])
         
-        # Update all frames and widgets
+        
         for widget in self.root.winfo_children():
             if isinstance(widget, ctk.CTkFrame):
                 widget.configure(fg_color=self.colors["background"])
@@ -698,17 +698,17 @@ class PlayerDataApp:
                     elif isinstance(child, ctk.CTkFrame):
                         child.configure(fg_color=self.colors["secondary"])
                         
-        # Update player data frame
+        
         if hasattr(self, 'player_data_frame'):
             self.player_data_frame.configure(fg_color=self.colors["secondary"])
             
-        # Update status bar
+        
         if hasattr(self, 'status_label'):
             self.status_label.configure(text_color=self.colors["text"])
         if hasattr(self, 'refresh_time_label'):
             self.refresh_time_label.configure(text_color=self.colors["text_secondary"])
             
-        # Force a refresh of the window
+        
         self.root.update_idletasks()
 
     def show_analysis(self):
@@ -721,14 +721,14 @@ class PlayerDataApp:
         analysis_window.geometry("500x400")
         
         try:
-            # Get analysis data
+            
             analysis = self.analyze_player_data(self.player_data)
             
-            # Create scrollable frame
+            
             scroll_frame = ctk.CTkScrollableFrame(analysis_window)
             scroll_frame.pack(fill='both', expand=True, padx=10, pady=10)
             
-            # Display general statistics
+            
             ctk.CTkLabel(scroll_frame, text="General Statistics", 
                         font=("Arial", 16, "bold")).pack(pady=5)
             
@@ -741,7 +741,7 @@ class PlayerDataApp:
             
             ctk.CTkLabel(scroll_frame, text=stats_text, justify='left').pack(pady=5)
             
-            # Only show inventory stats if there are any
+            
             if analysis['inventory_stats']:
                 ctk.CTkLabel(scroll_frame, text="Common Items", 
                             font=("Arial", 16, "bold")).pack(pady=5)
@@ -754,7 +754,7 @@ class PlayerDataApp:
                                 text=f"{item}: {count}",
                                 justify='left').pack()
             
-            # Only show location data if there are any
+            
             if analysis['location_heatmap']:
                 ctk.CTkLabel(scroll_frame, text="Player Distribution", 
                             font=("Arial", 16, "bold")).pack(pady=5)
@@ -767,7 +767,7 @@ class PlayerDataApp:
                                 text=f"Region {loc}: {count} players",
                                 justify='left').pack()
             
-            # Add export button
+            
             def export_analysis():
                 try:
                     file_path = filedialog.asksaveasfilename(
@@ -821,13 +821,13 @@ class PlayerDataApp:
     def clear_player_buttons(self):
         """Safely clear all player buttons"""
         try:
-            # Destroy all existing buttons
+            
             for button in self.player_buttons:
                 if button and button.winfo_exists():
                     button.after(10, button.destroy)  # Schedule destruction
             self.player_buttons.clear()
             
-            # Clear the frame
+            
             for widget in self.player_data_frame.winfo_children():
                 if widget.winfo_exists():
                     widget.after(10, widget.destroy)
@@ -837,17 +837,17 @@ class PlayerDataApp:
     def cleanup(self):
         """Clean up resources before closing"""
         try:
-            # Update values first
+            
             self.update_current_values()
             
-            # Stop auto-refresh
+            
             if hasattr(self, 'auto_refresh') and self.auto_refresh:
                 self.stop_auto_refresh()
             
-            # Save configuration
+            
             self.save_config()
             
-            # Clear buttons list
+            
             if hasattr(self, 'player_buttons'):
                 self.player_buttons.clear()
                 
@@ -859,7 +859,7 @@ class PlayerDataApp:
         try:
             self.cleanup()
         finally:
-            # Destroy the root window last
+            
             if self.root:
                 self.root.destroy()
 
@@ -876,10 +876,10 @@ class PlayerDataApp:
     def save_config(self):
         """Save current configuration"""
         try:
-            # Update stored values before saving
+            
             self.update_current_values()
             
-            # Update the config dictionary
+            
             self.config.update({
                 "refresh_interval": getattr(self, 'refresh_interval', 30),
                 "auto_refresh": getattr(self, 'auto_refresh', False),
