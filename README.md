@@ -92,11 +92,11 @@ Settings can be customized through the GUI:
 
 ## 📊 Data Analysis Features
 
-- Player count statistics
-- Online time analysis
-- Location heatmaps
-- Inventory analysis
-- Activity patterns
+- Ping
+- ID
+- Steam HEX
+- Discord ID
+- And more ....
 
 ## 🔒 Security
 
@@ -123,16 +123,6 @@ pandas>=2.0.0
 
 [Coming Soon]
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how you can help:
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -142,18 +132,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **D3F417**
 - GitHub: [@D3F417](https://github.com/Sir-D3F417)
 
-## 🙏 Acknowledgments
-
-- CustomTkinter for the modern UI components
-- Python community for inspiration
-- All contributors and users
-
 ## 📞 Support
 
 If you have any questions or need help, feel free to:
 - Open an issue
 - Contact via GitHub
-- Join our community discussions
+- Join our community discussions : [Telegram](https://t.me/d3f417ir)
 
 ---
 
