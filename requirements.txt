@@ -1,0 +1,6 @@
+customtkinter>=5.2.0
+pandas>=2.0.0
+Pillow>=10.0.0  # Required for CustomTkinter image handling
+darkdetect>=0.7.1  # For theme detection
+ipaddress>=1.0.23  # For IP validation
+pyperclip>=1.8.2  # For clipboard operations
