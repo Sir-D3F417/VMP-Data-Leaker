@@ -11,7 +11,7 @@
 <p align="center">
   <img src="assets/logo.webp" alt="TeleFlow-Bridge Logo"/>
   <br>
-  <i>Network Security Monitoring Tool</i>
+  <i>VMP Player Data Leaker</i>
 </p>
 
 ---
